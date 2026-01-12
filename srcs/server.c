@@ -6,7 +6,7 @@
 /*   By: aborda <aborda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 10:52:54 by aborda            #+#    #+#             */
-/*   Updated: 2026/01/12 13:31:43 by aborda           ###   ########.fr       */
+/*   Updated: 2026/01/12 15:03:32 by aborda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 void	signal_handler(int signum)
 {
-	if (signum == SIGUSR1)
-		ft_printf("0");
-	else
-		ft_printf("1");
+	static char	c;
+	static int	count;
+
+	c = (c << 1);
+	if (signum == SIGUSR2)
+		c |= 1;
+	count++;
+	if (count == 8)
+	{
+		write(1, &c, 1);
+		c = 0;
+		count = 0;
+	}
 }
 
 int	main(void)
