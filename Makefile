@@ -6,7 +6,7 @@
 #    By: aborda <aborda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 10:21:17 by aborda            #+#    #+#              #
-#    Updated: 2026/01/15 09:20:13 by aborda           ###   ########.fr        #
+#    Updated: 2026/01/15 11:43:36 by aborda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ OBJS_SERVER	= $(OBJ_DIR)/server.o
 # Rules
 all: $(CLIENT_NAME) $(SERVER_NAME)
 
+$(LIBFT):
+	@make -C libft
+
 $(OBJS_CLIENT): $(SRCS_CLIENT)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -53,23 +56,25 @@ $(OBJS_SERVER): $(SRCS_SERVER)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(GREEN)✓$(RESET) Compiled: $(CYAN)$<$(RESET)"
 
-$(CLIENT_NAME): $(OBJS_CLIENT)
+$(CLIENT_NAME): $(LIBFT) $(OBJS_CLIENT)
 	@$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBFT) -o $(CLIENT_NAME)
 	@echo "$(GREEN)==========================================$(RESET)"
 	@echo "$(GREEN)✓ $(CLIENT_NAME) client created successfully!$(RESET)"
 	@echo "$(GREEN)==========================================$(RESET)"
 
-$(SERVER_NAME): $(OBJS_SERVER)
+$(SERVER_NAME): $(LIBFT) $(OBJS_SERVER)
 	@$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBFT) -o $(SERVER_NAME)
 	@echo "$(GREEN)==========================================$(RESET)"
 	@echo "$(GREEN)✓ $(SERVER_NAME) server created successfully!$(RESET)"
 	@echo "$(GREEN)==========================================$(RESET)"
 
 clean:
+	@make clean -C libft
 	@rm -rf $(OBJ_DIR)
 	@echo "$(YELLOW)✓ Object files removed$(RESET)"
 
 fclean: clean
+	@make fclean -C libft
 	@rm -f $(CLIENT_NAME) $(SERVER_NAME)
 	@echo "$(YELLOW)✓ $(NAME) client & server removed$(RESET)"
 
