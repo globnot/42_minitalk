@@ -6,7 +6,7 @@
 /*   By: aborda <aborda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 08:32:55 by aborda            #+#    #+#             */
-/*   Updated: 2026/01/15 11:24:27 by aborda           ###   ########.fr       */
+/*   Updated: 2026/01/15 11:29:06 by aborda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	process_signal(int bit, int pid)
 	}
 }
 
-static	void process_bit(char c, int pid)
+static void	process_bit(char c, int pid)
 {
 	int	j;
 	int	bit;
@@ -38,7 +38,6 @@ static	void process_bit(char c, int pid)
 		process_signal(bit, pid);
 		j--;
 	}
-
 }
 
 int	main(int ac, char **av)
@@ -49,6 +48,11 @@ int	main(int ac, char **av)
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
+		if (pid <= 0)
+		{
+			ft_putstr_fd("Error: invalid PID\n", 2);
+			return (1);
+		}
 		i = 0;
 		while (av[2][i])
 		{
