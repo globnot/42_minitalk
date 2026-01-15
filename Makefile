@@ -6,7 +6,7 @@
 #    By: aborda <aborda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 10:21:17 by aborda            #+#    #+#              #
-#    Updated: 2026/01/12 11:02:41 by aborda           ###   ########.fr        #
+#    Updated: 2026/01/15 09:20:13 by aborda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ CYAN		= \033[0;36m
 RESET		= \033[0m
 
 # Project
-NAME		= minitalk
+CLIENT_NAME	= client
+SERVER_NAME	= server
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDES	= -Iincludes -I./libft/includes
@@ -31,27 +32,37 @@ LIBFT 		= ./libft/libft.a
 # Directories
 OBJ_DIR		= objs
 
-# vpath for source files
-vpath %.c srcs/
-
 # Sources
-SRCS 		= srcs/client.c srcs/server.c
+SRCS_CLIENT	= srcs/client.c
+SRCS_SERVER	= srcs/server.c
 
 # Objects
-OBJS 		= $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+OBJS_CLIENT	= $(OBJ_DIR)/client.o
+OBJS_SERVER	= $(OBJ_DIR)/server.o 
 
 # Rules
-all: $(NAME)
+all: $(CLIENT_NAME) $(SERVER_NAME)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJS_CLIENT): $(SRCS_CLIENT)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(GREEN)✓$(RESET) Compiled: $(CYAN)$<$(RESET)"
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(OBJS_SERVER): $(SRCS_SERVER)
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "$(GREEN)✓$(RESET) Compiled: $(CYAN)$<$(RESET)"
+
+$(CLIENT_NAME): $(OBJS_CLIENT)
+	@$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBFT) -o $(CLIENT_NAME)
 	@echo "$(GREEN)==========================================$(RESET)"
-	@echo "$(GREEN)✓ $(NAME) created successfully!$(RESET)"
+	@echo "$(GREEN)✓ $(CLIENT_NAME) client created successfully!$(RESET)"
+	@echo "$(GREEN)==========================================$(RESET)"
+
+$(SERVER_NAME): $(OBJS_SERVER)
+	@$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBFT) -o $(SERVER_NAME)
+	@echo "$(GREEN)==========================================$(RESET)"
+	@echo "$(GREEN)✓ $(SERVER_NAME) server created successfully!$(RESET)"
 	@echo "$(GREEN)==========================================$(RESET)"
 
 clean:
@@ -59,8 +70,8 @@ clean:
 	@echo "$(YELLOW)✓ Object files removed$(RESET)"
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "$(YELLOW)✓ $(NAME) removed$(RESET)"
+	@rm -f $(CLIENT_NAME) $(SERVER_NAME)
+	@echo "$(YELLOW)✓ $(NAME) client & server removed$(RESET)"
 
 re: fclean all
 
