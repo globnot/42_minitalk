@@ -6,7 +6,7 @@
 /*   By: aborda <aborda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 08:32:55 by aborda            #+#    #+#             */
-/*   Updated: 2026/01/15 11:29:06 by aborda           ###   ########.fr       */
+/*   Updated: 2026/01/15 11:32:05 by aborda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@ static void	process_signal(int bit, int pid)
 {
 	if (bit == 0)
 	{
-		kill(pid, SIGUSR1);
+		if (kill(pid, SIGUSR1) == -1)
+		{
+			ft_putstr_fd("Error: signal failed\n", 2);
+			exit (1);
+		}
 		usleep(100);
 	}
 	else
 	{
-		kill(pid, SIGUSR2);
+		if (kill(pid, SIGUSR2) == -1)
+		{
+			ft_putstr_fd("Error: signal failed\n", 2);
+			exit (1);
+		}
 		usleep(100);
 	}
 }
