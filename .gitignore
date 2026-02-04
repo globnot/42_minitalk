@@ -1,2 +1,3 @@
 *.o
-minitalk
+client
+server

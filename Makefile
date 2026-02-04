@@ -6,7 +6,7 @@
 #    By: aborda <aborda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 10:21:17 by aborda            #+#    #+#              #
-#    Updated: 2026/01/15 11:43:36 by aborda           ###   ########.fr        #
+#    Updated: 2026/01/15 14:20:37 by aborda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,13 +59,13 @@ $(OBJS_SERVER): $(SRCS_SERVER)
 $(CLIENT_NAME): $(LIBFT) $(OBJS_CLIENT)
 	@$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBFT) -o $(CLIENT_NAME)
 	@echo "$(GREEN)==========================================$(RESET)"
-	@echo "$(GREEN)✓ $(CLIENT_NAME) client created successfully!$(RESET)"
+	@echo "$(GREEN)✓ $(CLIENT_NAME) created successfully!$(RESET)"
 	@echo "$(GREEN)==========================================$(RESET)"
 
 $(SERVER_NAME): $(LIBFT) $(OBJS_SERVER)
 	@$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBFT) -o $(SERVER_NAME)
 	@echo "$(GREEN)==========================================$(RESET)"
-	@echo "$(GREEN)✓ $(SERVER_NAME) server created successfully!$(RESET)"
+	@echo "$(GREEN)✓ $(SERVER_NAME) created successfully!$(RESET)"
 	@echo "$(GREEN)==========================================$(RESET)"
 
 clean:

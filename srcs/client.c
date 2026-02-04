@@ -21,7 +21,7 @@ static void	process_signal(int bit, int pid)
 			ft_putstr_fd("Error: signal failed\n", 2);
 			exit(1);
 		}
-		usleep(100);
+		usleep(200);
 	}
 	else
 	{
@@ -30,7 +30,7 @@ static void	process_signal(int bit, int pid)
 			ft_putstr_fd("Error: signal failed\n", 2);
 			exit(1);
 		}
-		usleep(100);
+		usleep(200);
 	}
 }
 
