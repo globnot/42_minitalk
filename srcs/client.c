@@ -6,7 +6,7 @@
 /*   By: aborda <aborda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 08:32:55 by aborda            #+#    #+#             */
-/*   Updated: 2026/01/15 11:34:27 by aborda           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:25:04 by aborda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	process_signal(int bit, int pid)
 			ft_putstr_fd("Error: signal failed\n", 2);
 			exit(1);
 		}
-		usleep(200);
+		usleep(800);
 	}
 	else
 	{
@@ -30,7 +30,7 @@ static void	process_signal(int bit, int pid)
 			ft_putstr_fd("Error: signal failed\n", 2);
 			exit(1);
 		}
-		usleep(200);
+		usleep(800);
 	}
 }
 
