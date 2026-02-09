@@ -6,7 +6,7 @@
 /*   By: aborda <aborda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 10:52:54 by aborda            #+#    #+#             */
-/*   Updated: 2026/01/12 15:03:32 by aborda           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:32:03 by aborda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,16 @@ int	main(void)
 	sa.sa_handler = signal_handler;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+	{
+		ft_putstr_fd("Error: sigaction failed\n", 2);
+		exit(1);
+	}
+	if (sigaction(SIGUSR2, &sa, NULL) == -1)
+	{
+		ft_putstr_fd("Error: sigaction failed\n", 2);
+		exit(1);
+	}
 	while (1)
 		pause();
 	return (0);
