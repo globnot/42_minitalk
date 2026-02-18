@@ -33,13 +33,13 @@
 
 ### Cloner le projet
 
-Ce projet utilise **libft** comme sous-module Git. Pour cloner correctement le dépôt avec ses dépendances :
+Le projet utilise **libft** en tant que submodule Git. Pour cloner correctement :
 
 ```bash
-git clone --recurse-submodules <URL_du_repo>
+git clone --recursive <url_du_repo>
 ```
 
-Si tu as déjà cloné le dépôt sans les sous-modules :
+Ou si le repo est déjà cloné sans les submodules :
 
 ```bash
 git submodule update --init --recursive
