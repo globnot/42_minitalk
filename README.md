@@ -31,6 +31,20 @@
 - `make`
 - Système UNIX/Linux (signaux POSIX)
 
+### Cloner le projet
+
+Ce projet utilise **libft** comme sous-module Git. Pour cloner correctement le dépôt avec ses dépendances :
+
+```bash
+git clone --recurse-submodules <URL_du_repo>
+```
+
+Si tu as déjà cloné le dépôt sans les sous-modules :
+
+```bash
+git submodule update --init --recursive
+```
+
 ### Compilation
 
 ```bash
